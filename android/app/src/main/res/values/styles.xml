@@ -3,5 +3,5 @@
     <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowBackground">@drawable/aursunao</item>
     </style>
-    <color name="purple">#C262DB</color>
+    <color name="bg">#C262DB</color>
 </resources>
