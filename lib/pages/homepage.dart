@@ -150,14 +150,14 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () async {
                     //print(_text);
                     String uri =
-                        "https://aursunaobackend.herokuapp.com/emotion_detector?text=" +
+                        "https://aursunao.herokuapp.com/emotion_detector?text" +
                             _text;
                     final response = await http.get(Uri.parse(uri));
                     final decoded =
                         json.decode(response.body) as Map<String, dynamic>;
                     print(decoded);
                     setState(() => _isListening = false);
-                    String savingdata = "https://aursunaobackend.herokuapp.com/save?user"+widget.userid+"&text="+_text; 
+                    String savingdata = "https://aursunaobackend.herokuapp.com/save?user="+widget.userid+"&text="+_text; 
                     await http.get(Uri.parse(savingdata));
                     _speech.stop();
                   },

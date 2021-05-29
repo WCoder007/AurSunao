@@ -260,6 +260,7 @@ class _AppHomeState extends State<AppHome> {
             name: widget.name,
             picture: widget.picture,
             logoutAction: widget.logoutAction,
+            userid: widget.userid
           ),
         ],
       ),

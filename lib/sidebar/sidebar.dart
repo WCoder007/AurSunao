@@ -2,16 +2,20 @@ import 'dart:async';
 import 'package:aursunao/pages/logs.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SideBar extends StatefulWidget {
   final String name;
   final String picture;
   final Function logoutAction;
+  final String userid;
   const SideBar(
       {Key? key,
       required this.name,
       required this.picture,
-      required this.logoutAction})
+      required this.logoutAction,
+      required this.userid})
       : super(key: key);
 
   @override
@@ -106,7 +110,11 @@ class _SideBarState extends State<SideBar>
                         ),
                         SidebarMenuItem(
                             title: "Logs",
-                            onTap: () {
+                            onTap: () async {
+                              String uri = "https://aursunaobackend.herokuapp.com/retrieve?"+widget.userid;
+                              final response = await http.get(Uri.parse(uri));
+                              final result =json.decode(response.body) as List;
+                              print(result);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
