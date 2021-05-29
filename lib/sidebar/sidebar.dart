@@ -111,9 +111,11 @@ class _SideBarState extends State<SideBar>
                         SidebarMenuItem(
                             title: "Logs",
                             onTap: () async {
-                              String uri = "https://aursunaobackend.herokuapp.com/retrieve?"+widget.userid;
+                              String uri =
+                                  "https://aursunaobackend.herokuapp.com/retrieve?user=" +
+                                      widget.userid;
                               final response = await http.get(Uri.parse(uri));
-                              final result =json.decode(response.body) as List;
+                              final result = json.decode(response.body) as List;
                               print(result);
                               Navigator.push(
                                   context,
