@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SideBar extends StatefulWidget {
+  final String name;
+  final String picture;
+  final Function logoutAction;
+  const SideBar({Key? key, required this.name, required this.picture, required this.logoutAction})
+      : super(key: key);
+
   @override
   _SideBarState createState() => _SideBarState();
 }
@@ -53,11 +59,17 @@ class _SideBarState extends State<SideBar>
                     color: Colors.deepPurple[800],
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 200),
-                        CircleAvatar(
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.white,
+                        SizedBox(height: 150),
+                        Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 4),
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(widget.picture),
+                            ),
                           ),
                         ),
                         ListTile(
@@ -65,7 +77,7 @@ class _SideBarState extends State<SideBar>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Alice xyz",
+                                widget.name,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 25,
@@ -96,6 +108,7 @@ class _SideBarState extends State<SideBar>
                             title: "Log out",
                             onTap: () {
                               print("Menu item 3");
+                              widget.logoutAction();
                             }),
                       ],
                     ),

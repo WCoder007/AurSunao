@@ -22,7 +22,7 @@ class AuthorizationService {
           'login'
         ],
             scopes: <String>[
-          'offline_access',
+          'offline_access', 'openid', 'profile'
         ],
             additionalParameters: {
           'audience': 'https://aursunaobackend.herokuapp.com',
