@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String text = 'Press the button and start speaking';
+  String text = 'Press the button and speak your heart out!';
   bool isListening = false;
   final Map<String, HighlightedWord> _highlights = {
     'sad': HighlightedWord(
@@ -53,7 +55,7 @@ class _HomePageState extends State<HomePage> {
 
   stt.SpeechToText _speech;
   bool _isListening = false;
-  String _text = 'Press the button and start speaking';
+  String _text = 'Press the button and speak your heart out!';
   double _confidence = 1.0;
 
   @override
@@ -107,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                   text: _text,
                   words: _highlights,
                   textStyle: const TextStyle(
-                    fontSize: 32.0,
+                    fontSize: 25.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
                   ),
@@ -120,6 +122,43 @@ class _HomePageState extends State<HomePage> {
                 fontSize: 25.0,
                 color: Colors.black,
                 fontWeight: FontWeight.w400,
+              ),
+            ),
+            Center(
+              child: Container(
+                margin: EdgeInsets.all(20),
+                height: 50.0,
+                decoration: BoxDecoration(
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.deepPurple.withOpacity(0.1),
+                      blurRadius: 1,
+                      offset: Offset(10, 10),
+                    ),
+                  ],
+                ),
+                child: RaisedButton(
+                  elevation: 30,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0.0),
+                      side: BorderSide(color: Colors.deepPurple)),
+                  onPressed: () async {
+                    //print(_text);
+                    String uri =
+                        "https://aursunaobackend.herokuapp.com/emotion_detector?text=" +
+                            _text;
+                    final response = await http.get(Uri.parse(uri));
+                    final decoded =
+                        json.decode(response.body) as Map<String, dynamic>;
+                    print(decoded);
+                    setState(() => _isListening = false);
+                    _speech.stop();
+                  },
+                  padding: EdgeInsets.all(10.0),
+                  color: Colors.deepPurple,
+                  textColor: Colors.white,
+                  child: Text("Save to Log"),
+                ),
               ),
             ),
           ],
