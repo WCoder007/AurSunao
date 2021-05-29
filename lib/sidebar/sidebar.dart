@@ -6,7 +6,11 @@ class SideBar extends StatefulWidget {
   final String name;
   final String picture;
   final Function logoutAction;
-  const SideBar({Key? key, required this.name, required this.picture, required this.logoutAction})
+  const SideBar(
+      {Key? key,
+      required this.name,
+      required this.picture,
+      required this.logoutAction})
       : super(key: key);
 
   @override
@@ -76,14 +80,19 @@ class _SideBarState extends State<SideBar>
                           title: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                widget.name,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Text(
+                                    widget.name,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),
