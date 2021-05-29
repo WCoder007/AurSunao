@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
             ),
             Center(
               child: Container(
-                margin: EdgeInsets.all(40),
+                margin: EdgeInsets.all(20),
                 height: 50.0,
                 decoration: BoxDecoration(
                   boxShadow: <BoxShadow>[
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(0.0),
                       side: BorderSide(color: Colors.deepPurple)),
                   onPressed: () async {
-                    // print(_text);
+                    //print(_text);
                     String uri =
                         "https://aursunaobackend.herokuapp.com/emotion_detector?text=" +
                             _text;
@@ -151,6 +151,8 @@ class _HomePageState extends State<HomePage> {
                     final decoded =
                         json.decode(response.body) as Map<String, dynamic>;
                     print(decoded);
+                    setState(() => _isListening = false);
+                    _speech.stop();
                   },
                   padding: EdgeInsets.all(10.0),
                   color: Colors.deepPurple,
