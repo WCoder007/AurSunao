@@ -86,16 +86,17 @@ class _SideBarState extends State<SideBar>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Expanded(
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Text(
-                                    widget.name,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      widget.name,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               )
                             ],
