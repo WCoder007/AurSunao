@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
               children: [
                 SizedBox(height: 50.0),
                 Text(
-                  "Aur Sunao",
+                  "Aur Sunao!",
                   style: TextStyle(
                     fontFamily: "Chewy",
                     color: Colors.deepPurple[800],
