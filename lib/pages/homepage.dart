@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String text = 'Press the button and start speaking';
+  String text = 'Press the button and speak your heart out!';
   bool isListening = false;
   final Map<String, HighlightedWord> _highlights = {
     'sad': HighlightedWord(
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
 
   stt.SpeechToText _speech;
   bool _isListening = false;
-  String _text = 'Press the button and start speaking';
+  String _text = 'Press the button and speak your heart out!';
   double _confidence = 1.0;
 
   @override
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                   text: _text,
                   words: _highlights,
                   textStyle: const TextStyle(
-                    fontSize: 32.0,
+                    fontSize: 25.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
                   ),
