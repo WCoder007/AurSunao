@@ -78,6 +78,7 @@ class _MyAppState extends State<MyApp> {
   String errorMessage = '';
   String name = '';
   String picture = '';
+  String userid = '';
 
   @override
   Widget build(BuildContext context) {
@@ -144,13 +145,13 @@ class _MyAppState extends State<MyApp> {
       final Map<String, Object> idToken = parseIdToken(result.idToken);
       final Map<String, Object> profile =
           await getUserDetails(result.accessToken);
-
       await secureStorage.write(
           key: 'refresh_token', value: result.refreshToken);
 
       setState(() {
         isBusy = false;
         isLoggedIn = true;
+        userid = idToken['sub'].toString();
         name = idToken['name'].toString();
         picture = profile['picture'].toString();
       });
@@ -206,6 +207,7 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         isBusy = false;
         isLoggedIn = true;
+        userid = idToken['sub'].toString();
         name = idToken['name'].toString();
         picture = profile['picture'].toString();
       });

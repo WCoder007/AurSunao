@@ -95,19 +95,13 @@ class _SideBarState extends State<SideBar>
                           endIndent: 32,
                         ),
                         SidebarMenuItem(
-                            title: "Record a diary",
+                            title: "Logs",
                             onTap: () {
                               print("Menu item 1");
                             }),
                         SidebarMenuItem(
-                            title: "Logs",
-                            onTap: () {
-                              print("Menu item 2");
-                            }),
-                        SidebarMenuItem(
                             title: "Log out",
                             onTap: () {
-                              print("Menu item 3");
                               widget.logoutAction();
                             }),
                       ],
