@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
@@ -120,6 +122,23 @@ class _HomePageState extends State<HomePage> {
                 fontSize: 25.0,
                 color: Colors.black,
                 fontWeight: FontWeight.w400,
+              ),
+            ),
+            Center(
+              child: Container(
+                width: 150,
+                height: 60,
+                child: TextButton(
+                  onPressed: () async{
+                    // print(_text);
+                    String uri="https://aursunaobackend.herokuapp.com/emotion_detector?text="+_text;
+                    final response=await http.get(Uri.parse(uri));
+                    final decoded=json.decode(response.body) as Map<String,dynamic> ;
+                    print(decoded);
+                  } ,
+
+                  child: Text("save"),
+                ),
               ),
             ),
           ],
