@@ -126,18 +126,36 @@ class _HomePageState extends State<HomePage> {
             ),
             Center(
               child: Container(
-                width: 150,
-                height: 60,
-                child: TextButton(
-                  onPressed: () async{
+                margin: EdgeInsets.all(40),
+                height: 50.0,
+                decoration: BoxDecoration(
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.deepPurple.withOpacity(0.1),
+                      blurRadius: 1,
+                      offset: Offset(10, 10),
+                    ),
+                  ],
+                ),
+                child: RaisedButton(
+                  elevation: 30,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0.0),
+                      side: BorderSide(color: Colors.deepPurple)),
+                  onPressed: () async {
                     // print(_text);
-                    String uri="https://aursunaobackend.herokuapp.com/emotion_detector?text="+_text;
-                    final response=await http.get(Uri.parse(uri));
-                    final decoded=json.decode(response.body) as Map<String,dynamic> ;
+                    String uri =
+                        "https://aursunaobackend.herokuapp.com/emotion_detector?text=" +
+                            _text;
+                    final response = await http.get(Uri.parse(uri));
+                    final decoded =
+                        json.decode(response.body) as Map<String, dynamic>;
                     print(decoded);
-                  } ,
-
-                  child: Text("save"),
+                  },
+                  padding: EdgeInsets.all(10.0),
+                  color: Colors.deepPurple,
+                  textColor: Colors.white,
+                  child: Text("Save to Log"),
                 ),
               ),
             ),
