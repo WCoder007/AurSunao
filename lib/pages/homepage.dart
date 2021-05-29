@@ -148,20 +148,24 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(0.0),
                       side: BorderSide(color: Colors.deepPurple)),
                   onPressed: () async {
-                    //print(_text);
                     setState(() => _isListening = false);
                     _speech.stop();
                     String uri =
-                        "https://aursunao.herokuapp.com/emotion_detector?text" +
+                        "https://aursunao.herokuapp.com/emotion_detector?text=" +
                             _text;
+
                     final response = await http.get(Uri.parse(uri));
                     final decoded =
                         json.decode(response.body) as Map<String, dynamic>;
                     print(decoded);
 
-                    String savingdata = "https://aursunaobackend.herokuapp.com/save?user="+widget.userid+"&text="+_text; 
+                    String savingdata =
+                        "https://aursunaobackend.herokuapp.com/save?user=" +
+                            widget.userid +
+                            "&text=" +
+                            _text;
+                    print(savingdata);
                     await http.get(Uri.parse(savingdata));
-
                   },
                   padding: EdgeInsets.all(10.0),
                   color: Colors.deepPurple,
