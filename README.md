@@ -1,7 +1,22 @@
 ## AurSunao
 
-### Employee Referral Application - Team OneMoreHack
+### Team OneMoreHack
 #### In times you feel all alone, now you too have someone to say "Aur Sunao!"
+
+### Idea
+
+### The Problem it Solves
+
+### Inspiration
+
+## Technologies Used
+* flutter and dart for front end
+* React.js / node.js  
+* CockroachDB
+* Google Firebase
+* Figma for UI
+
+### Snapshots
 
 ### Setup for developers
 Follow the instructions below to run the application in developer mode:
