@@ -33,6 +33,7 @@ dependencies:
   speech_to_text: ^2.3.0
   highlight_text: ^0.7.2
   avatar_glow: ^1.2.0
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
