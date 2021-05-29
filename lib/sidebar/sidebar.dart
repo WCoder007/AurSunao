@@ -115,7 +115,8 @@ class _SideBarState extends State<SideBar>
                                   "https://aursunaobackend.herokuapp.com/retrieve?user=" +
                                       widget.userid;
                               final response = await http.get(Uri.parse(uri));
-                              final result = json.decode(response.body) as Map<String,List>;
+                              final result = jsonDecode(response.body);
+                              // as Map<String, List<String>>;
                               print(result);
                               Navigator.push(
                                   context,
