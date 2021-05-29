@@ -157,6 +157,8 @@ class _HomePageState extends State<HomePage> {
                         json.decode(response.body) as Map<String, dynamic>;
                     print(decoded);
                     setState(() => _isListening = false);
+                    String savingdata = "https://aursunaobackend.herokuapp.com/save?user"+widget.userid+"&text="+_text; 
+                    await http.get(Uri.parse(savingdata));
                     _speech.stop();
                   },
                   padding: EdgeInsets.all(10.0),
