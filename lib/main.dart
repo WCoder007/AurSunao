@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
               ? const CircularProgressIndicator()
               : isLoggedIn
                   ? AppHome(
-                      name: name, picture: picture, logoutAction: logoutAction)
+                      userid: userid, name: name, picture: picture, logoutAction: logoutAction)
                   : Login(loginAction, errorMessage),
         ),
       ),
@@ -152,7 +152,7 @@ class _MyAppState extends State<MyApp> {
         isBusy = false;
         isLoggedIn = true;
         userid = idToken['sub'].toString();
-        name = idToken['name'].toString();
+        name = idToken['nickname'].toString();
         picture = profile['picture'].toString();
       });
     } on Exception catch (e, s) {
@@ -208,7 +208,7 @@ class _MyAppState extends State<MyApp> {
         isBusy = false;
         isLoggedIn = true;
         userid = idToken['sub'].toString();
-        name = idToken['name'].toString();
+        name = idToken['nickname'].toString();
         picture = profile['picture'].toString();
       });
     } on Exception catch (e, s) {
@@ -219,6 +219,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class AppHome extends StatefulWidget {
+  final String userid;
   final String name;
   final String picture;
   final Function logoutAction;
@@ -226,6 +227,7 @@ class AppHome extends StatefulWidget {
 
   const AppHome(
       {Key? key,
+      required this.userid,
       required this.name,
       required this.picture,
       required this.logoutAction})
@@ -253,7 +255,7 @@ class _AppHomeState extends State<AppHome> {
       // ),
       body: Stack(
         children: <Widget>[
-          HomePage(),
+          HomePage(userid: widget.userid),
           SideBar(
             name: widget.name,
             picture: widget.picture,

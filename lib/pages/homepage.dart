@@ -8,6 +8,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
+  final String userid;
+  const HomePage({
+    Key key,
+    this.userid,
+  }) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
