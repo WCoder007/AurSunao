@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:aursunao/pages/logs.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -6,7 +7,11 @@ class SideBar extends StatefulWidget {
   final String name;
   final String picture;
   final Function logoutAction;
-  const SideBar({Key? key, required this.name, required this.picture, required this.logoutAction})
+  const SideBar(
+      {Key? key,
+      required this.name,
+      required this.picture,
+      required this.logoutAction})
       : super(key: key);
 
   @override
@@ -97,7 +102,10 @@ class _SideBarState extends State<SideBar>
                         SidebarMenuItem(
                             title: "Logs",
                             onTap: () {
-                              print("Menu item 1");
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LogsView()));
                             }),
                         SidebarMenuItem(
                             title: "Log out",
