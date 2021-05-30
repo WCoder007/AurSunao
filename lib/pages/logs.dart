@@ -4,12 +4,34 @@ class LogsView extends StatefulWidget {
   final List<String> logdata;
   final List<String> moods;
   final List<String> dates;
-  const LogsView({Key ? key, required this.logdata, required this.dates, required this.moods}) : super(key: key);
+  const LogsView(
+      {Key? key,
+      required this.logdata,
+      required this.dates,
+      required this.moods})
+      : super(key: key);
   @override
   _LogsViewState createState() => _LogsViewState();
 }
 
 class _LogsViewState extends State<LogsView> {
+  Map<String, Color> moodColor = {
+    "Happy": Colors.lightGreen,
+    "Sad": Colors.blue,
+    "Angry": Colors.deepOrange,
+    "Fear": Colors.red,
+    "Suprised": Colors.amber,
+    "Neutral": Colors.purple
+  };
+  Map<String, Color> moodColorLite = {
+    "Happy": Colors.lightGreen.shade50,
+    "Sad": Colors.blue.shade50,
+    "Angry": Colors.deepOrange.shade50,
+    "Fear": Colors.red.shade50,
+    "Suprised": Colors.amber.shade50,
+    "Neutral": Colors.purple.shade50
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +60,10 @@ class _LogsViewState extends State<LogsView> {
                 ],
               ),
             ),
-            Text("Logs"),
+            Text(
+              "Logs",
+              style: TextStyle(fontSize: 25),
+            ),
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -56,7 +81,7 @@ class _LogsViewState extends State<LogsView> {
     return Card(
       margin: EdgeInsets.fromLTRB(25, 0, 25, 25),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      color: Colors.amber,
+      color: moodColor[widget.moods[i]],
       child: Column(
         children: <Widget>[
           Row(
@@ -64,15 +89,16 @@ class _LogsViewState extends State<LogsView> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(9.0),
-                  child: Text(
-                    widget.logdata[i],
-                  ),
+                  child: Text(widget.logdata[i],
+                      style: TextStyle(
+                        color: Colors.white,
+                      )),
                 ),
               ),
             ],
           ),
           Container(
-            color: Colors.amber[50],
+            color: moodColorLite[widget.moods[i]],
             child: Row(
               children: <Widget>[
                 Expanded(
