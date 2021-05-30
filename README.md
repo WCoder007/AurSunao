@@ -13,7 +13,7 @@ Amidst the pandemic where life, career and everything in between are at crossroa
 * flutter and dart for front end
 * Flask for backend  
 * Heroku for hosting backend
-* Anuth0 for user authentication
+* Auth0 for user authentication
 * Canva for UI
 
 ### Setup for developers
