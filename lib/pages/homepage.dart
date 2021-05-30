@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
   bool _isListening = false;
   String _text = 'Press the button and speak your heart out!';
   double _confidence = 1.0;
-  bool viewResults = true;
+  bool viewResults = false;
 
   String _happyText =
       "Hey you, seems like you are in a happy mood today, hope it continues throughout the day. Do spread your positive vibes to others and be all ears to someone who needs a good talk ,take care!";
@@ -138,12 +138,11 @@ class _HomePageState extends State<HomePage> {
                 reverse: true,
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-                  // color: Colors.deepPurple,
                   child: TextHighlight(
                     text: _text,
                     words: _highlights,
                     textStyle: const TextStyle(
-                      fontSize: 25.0,
+                      fontSize: 21.0,
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
                     ),
@@ -153,7 +152,7 @@ class _HomePageState extends State<HomePage> {
               Text(
                 'Accuracy: ${(_confidence * 100.0).toStringAsFixed(1)}%',
                 style: TextStyle(
-                  fontSize: 25.0,
+                  fontSize: 20.0,
                   color: Colors.black,
                   fontWeight: FontWeight.w400,
                 ),
@@ -161,20 +160,9 @@ class _HomePageState extends State<HomePage> {
               Center(
                 child: Container(
                   margin: EdgeInsets.all(20),
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                        color: Colors.deepPurple.withOpacity(0.1),
-                        blurRadius: 1,
-                        offset: Offset(10, 10),
-                      ),
-                    ],
-                  ),
                   child: RaisedButton(
-                    elevation: 30,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0.0),
+                        borderRadius: BorderRadius.circular(15.0),
                         side: BorderSide(color: Colors.deepPurple)),
                     onPressed: () async {
                       setState(() => _isListening = false);
@@ -247,8 +235,9 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Text(
                                       finalMood,
-                                      style: TextStyle(fontSize: 17,
-                                      fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       moodResult,
