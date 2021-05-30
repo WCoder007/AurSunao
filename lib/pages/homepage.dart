@@ -158,6 +158,15 @@ class _HomePageState extends State<HomePage> {
                     final decoded =
                         json.decode(response.body) as Map<String, dynamic>;
                     print(decoded);
+                    String mood="";
+                    decoded.keys.forEach((element) { 
+                      if(decoded[element]>0.5){
+                        mood=element;
+                      }
+                    });
+                    if(mood==""){
+                      mood="Neutral";
+                    }
 
                     String savingdata =
                         "https://aursunaobackend.herokuapp.com/save?user=" +
