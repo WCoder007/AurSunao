@@ -20,7 +20,7 @@ class _LogsViewState extends State<LogsView> {
     "Sad": Colors.blue,
     "Angry": Colors.deepOrange,
     "Fear": Colors.red,
-    "Suprised": Colors.amber,
+    "Suprise": Colors.amber,
     "Neutral": Colors.purple
   };
   Map<String, Color> moodColorLite = {
@@ -28,7 +28,7 @@ class _LogsViewState extends State<LogsView> {
     "Sad": Colors.blue.shade50,
     "Angry": Colors.deepOrange.shade50,
     "Fear": Colors.red.shade50,
-    "Suprised": Colors.amber.shade50,
+    "Suprise": Colors.amber.shade50,
     "Neutral": Colors.purple.shade50
   };
 

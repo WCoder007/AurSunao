@@ -62,12 +62,26 @@ class _HomePageState extends State<HomePage> {
   bool _isListening = false;
   String _text = 'Press the button and speak your heart out!';
   double _confidence = 1.0;
-
+  bool viewResults = false;
   @override
   void initState() {
     super.initState();
     _speech = stt.SpeechToText();
   }
+
+  void showResults() {
+    setState(() {
+      viewResults = true;
+    });
+  }
+
+  void hideResults() {
+    setState(() {
+      viewResults = false;
+    });
+  }
+
+  String moodResult = "";
 
   @override
   Widget build(BuildContext context) {
@@ -158,14 +172,14 @@ class _HomePageState extends State<HomePage> {
                     final decoded =
                         json.decode(response.body) as Map<String, dynamic>;
                     print(decoded);
-                    String mood="";
-                    decoded.keys.forEach((element) { 
-                      if(decoded[element]>0.5){
-                        mood=element;
+                    String mood = "";
+                    decoded.keys.forEach((element) {
+                      if (decoded[element] > 0.5) {
+                        mood = element;
                       }
                     });
-                    if(mood==""){
-                      mood="Neutral";
+                    if (mood == "") {
+                      mood = "Neutral";
                     }
 
                     String savingdata =
@@ -175,6 +189,11 @@ class _HomePageState extends State<HomePage> {
                             _text;
                     print(savingdata);
                     await http.get(Uri.parse(savingdata));
+
+                    setState(() {
+                      moodResult = mood;
+                      showResults();
+                    });
                   },
                   padding: EdgeInsets.all(10.0),
                   color: Colors.deepPurple,
@@ -183,6 +202,29 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            viewResults
+                ? Container(
+                    color: Colors.purple[100],
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(9.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  moodResult,
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Text(""),
           ],
         ),
       ),
@@ -190,6 +232,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _listen() async {
+    setState(() {
+      hideResults();
+    });
     if (!_isListening) {
       bool available = await _speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
@@ -210,5 +255,19 @@ class _HomePageState extends State<HomePage> {
       setState(() => _isListening = false);
       _speech.stop();
     }
+  }
+}
+
+class Results extends StatefulWidget {
+  @override
+  _ResultsState createState() => _ResultsState();
+}
+
+class _ResultsState extends State<Results> {
+  @override
+  Widget build(BuildContext context) {
+    return Visibility(
+      visible: viewResults,
+    );
   }
 }
