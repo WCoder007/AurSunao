@@ -17,12 +17,12 @@ Amidst the pandemic where life, career and everything in between are at crossroa
 * Canva for UI
 
 ### Snapshots
-Emotion detector and results
-![output page](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap1.jpeg)
+
+![output page](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap1.jpeg "Emotion detector and results")
 <br>
 <br>
-Logs
-![logs](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap2.jpeg)
+
+![logs](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap2.jpeg "Logs")
 <br>
 
 ### Setup for developers
