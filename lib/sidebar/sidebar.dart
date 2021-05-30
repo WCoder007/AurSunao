@@ -116,13 +116,18 @@ class _SideBarState extends State<SideBar>
                                   "https://aursunaobackend.herokuapp.com/retrieve?user=" +
                                       widget.userid;
                               final response = await http.get(Uri.parse(uri));
-                              final result = jsonDecode(response.body);
-                              // as Map<String, List<String>>;
-                              print(result);
+                              final result = jsonDecode(response.body) as Map;
+                              List <String> logData = [], moods = [], dates = [];
+                              result.keys.forEach((element) { 
+                                logData.add(element);
+                                dates.add(result[element][0]);
+                                moods.add(result[element][1]);
+                               });
+                              
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LogsView()));
+                                      builder: (context) => LogsView(logdata: logData, dates: dates, moods: moods)));
                             }),
                         SidebarMenuItem(
                             title: "Log out",

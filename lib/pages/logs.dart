@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LogsView extends StatefulWidget {
+  final List<String> logdata;
+  final List<String> moods;
+  final List<String> dates;
+  const LogsView({Key ? key, required this.logdata, required this.dates, required this.moods}) : super(key: key);
   @override
   _LogsViewState createState() => _LogsViewState();
 }
 
 class _LogsViewState extends State<LogsView> {
-  List logdata = <String>[
-    "rbtkgbbgosbg;oberl ehlifh3;o4h rqp3 rhqwj fl/qwehfehoih liqer vlerhbefvfn aflbvierh  rhfwei fihihwef hijfphfknewf iehfphwepfhel"
-  ];
-  List moods = <String>["Happy"];
-  List dates = <String>["May 30, 2021"];
-  List times = <String>["4:01 AM"];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +42,7 @@ class _LogsViewState extends State<LogsView> {
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: logdata.length,
+                itemCount: widget.logdata.length,
                 itemBuilder: (BuildContext context, int pos) {
                   return getLogCard(pos);
                 }),
@@ -68,7 +65,7 @@ class _LogsViewState extends State<LogsView> {
                 child: Padding(
                   padding: const EdgeInsets.all(9.0),
                   child: Text(
-                    logdata[i],
+                    widget.logdata[i],
                   ),
                 ),
               ),
@@ -85,15 +82,11 @@ class _LogsViewState extends State<LogsView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          moods[i],
+                          widget.moods[i],
                           style: TextStyle(fontSize: 10),
                         ),
                         Text(
-                          dates[i],
-                          style: TextStyle(fontSize: 10),
-                        ),
-                        Text(
-                          times[i],
+                          widget.dates[i],
                           style: TextStyle(fontSize: 10),
                         ),
                       ],
