@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:convert';
 import 'package:aursunao/pages/homepage.dart';
 import 'package:aursunao/sidebar/sidebar.dart';
@@ -19,7 +21,7 @@ class Login extends StatelessWidget {
   final Future<void> Function() loginAction;
   final String loginError;
 
-  const Login(this.loginAction, this.loginError, {Key? key}) : super(key: key);
+  const Login(this.loginAction, this.loginError, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class Login extends StatelessWidget {
 void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -226,11 +228,11 @@ class AppHome extends StatefulWidget {
   // final String title;
 
   const AppHome(
-      {Key? key,
-      required this.userid,
-      required this.name,
-      required this.picture,
-      required this.logoutAction})
+      {Key key,
+      this.userid,
+      this.name,
+      this.picture,
+      this.logoutAction})
       : super(key: key);
   // AppHome({Key? key, required this.title}) : super(key: key);
 

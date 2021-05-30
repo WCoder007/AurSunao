@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:async';
 import 'package:aursunao/pages/logs.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +13,11 @@ class SideBar extends StatefulWidget {
   final Function logoutAction;
   final String userid;
   const SideBar(
-      {Key? key,
-      required this.name,
-      required this.picture,
-      required this.logoutAction,
-      required this.userid})
+      {Key key,
+      this.name,
+      this.picture,
+      this.logoutAction,
+      this.userid})
       : super(key: key);
 
   @override
@@ -25,10 +27,10 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar>
     with SingleTickerProviderStateMixin<SideBar> {
   bool isSidebarOpen = false;
-  late AnimationController _aniController;
-  late StreamController<bool> sidebarOpenStramController;
-  late Stream<bool> sidebarStream;
-  late StreamSink<bool> sidearStreamSink;
+  AnimationController _aniController;
+  StreamController<bool> sidebarOpenStramController;
+  Stream<bool> sidebarStream;
+  StreamSink<bool> sidearStreamSink;
 
   @override
   void initState() {
@@ -180,7 +182,7 @@ class SidebarMenuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  const SidebarMenuItem({Key? key, required this.title, required this.onTap})
+  const SidebarMenuItem({Key key, this.title, this.onTap})
       : super(key: key);
 
   @override
