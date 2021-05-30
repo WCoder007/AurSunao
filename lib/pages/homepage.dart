@@ -112,150 +112,153 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 50.0),
-                  Text(
-                    "Aur Sunao!",
-                    style: TextStyle(
-                      fontFamily: "Chewy",
-                      color: Colors.deepPurple[800],
-                      fontSize: 40,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              reverse: true,
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-                // color: Colors.deepPurple,
-                child: TextHighlight(
-                  text: _text,
-                  words: _highlights,
-                  textStyle: const TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ),
-            Text(
-              'Accuracy: ${(_confidence * 100.0).toStringAsFixed(1)}%',
-              style: TextStyle(
-                fontSize: 25.0,
-                color: Colors.black,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Center(
-              child: Container(
-                margin: EdgeInsets.all(20),
-                height: 50.0,
-                decoration: BoxDecoration(
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Colors.deepPurple.withOpacity(0.1),
-                      blurRadius: 1,
-                      offset: Offset(10, 10),
+        child: SingleChildScrollView(
+          physics: ScrollPhysics(),
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 50.0),
+                    Text(
+                      "Aur Sunao!",
+                      style: TextStyle(
+                        fontFamily: "Chewy",
+                        color: Colors.deepPurple[800],
+                        fontSize: 40,
+                      ),
                     ),
                   ],
                 ),
-                child: RaisedButton(
-                  elevation: 30,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0.0),
-                      side: BorderSide(color: Colors.deepPurple)),
-                  onPressed: () async {
-                    setState(() => _isListening = false);
-                    _speech.stop();
-                    String uri =
-                        "https://aursunao.herokuapp.com/emotion_detector?text=" +
-                            _text;
-
-                    final response = await http.get(Uri.parse(uri));
-                    final decoded =
-                        json.decode(response.body) as Map<String, dynamic>;
-                    print(decoded);
-                    String mood = "";
-                    decoded.keys.forEach((element) {
-                      if (decoded[element] > 0.5) {
-                        mood = element;
-                      }
-                    });
-                    if (mood == "") {
-                      mood = "Neutral";
-                    }
-
-                    String savingdata =
-                        "https://aursunaobackend.herokuapp.com/save?user=" +
-                            widget.userid +
-                            "&text=" +
-                            _text;
-                    print(savingdata);
-                    await http.get(Uri.parse(savingdata));
-
-                    setState(() {
-                      moodResult = mood;
-                      if (mood == "Happy") {
-                        moodResult = _happyText;
-                      } else if (mood == "Sad") {
-                        moodResult = _sadText;
-                      } else if (mood == "Fear") {
-                        moodResult = _fearTExt;
-                      } else if (mood == "Suprise") {
-                        moodResult = _supText;
-                      } else if (mood == "angry") {
-                        moodResult = _angryText;
-                      } else {
-                        moodResult = "Hope it's all good!";
-                      }
-                      showResults();
-                    });
-                  },
-                  padding: EdgeInsets.all(10.0),
-                  color: Colors.deepPurple,
-                  textColor: Colors.white,
-                  child: Text("Save to Log"),
+              ),
+              SingleChildScrollView(
+                reverse: true,
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
+                  // color: Colors.deepPurple,
+                  child: TextHighlight(
+                    text: _text,
+                    words: _highlights,
+                    textStyle: const TextStyle(
+                      fontSize: 25.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            viewResults
-                ? SingleChildScrollView(
-                    physics: ScrollPhysics(),
-                    child: Container(
-                      color: Colors.purple[100],
-                      margin: EdgeInsets.fromLTRB(25, 0, 25, 25),
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(9.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    moodResult,
-                                    style: TextStyle(fontSize: 10),
-                                  ),
-                                ],
+              Text(
+                'Accuracy: ${(_confidence * 100.0).toStringAsFixed(1)}%',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Center(
+                child: Container(
+                  margin: EdgeInsets.all(20),
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.deepPurple.withOpacity(0.1),
+                        blurRadius: 1,
+                        offset: Offset(10, 10),
+                      ),
+                    ],
+                  ),
+                  child: RaisedButton(
+                    elevation: 30,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0.0),
+                        side: BorderSide(color: Colors.deepPurple)),
+                    onPressed: () async {
+                      setState(() => _isListening = false);
+                      _speech.stop();
+                      String uri =
+                          "https://aursunao.herokuapp.com/emotion_detector?text=" +
+                              _text;
+
+                      final response = await http.get(Uri.parse(uri));
+                      final decoded =
+                          json.decode(response.body) as Map<String, dynamic>;
+                      print(decoded);
+                      String mood = "";
+                      decoded.keys.forEach((element) {
+                        if (decoded[element] > 0.5) {
+                          mood = element;
+                        }
+                      });
+                      if (mood == "") {
+                        mood = "Neutral";
+                      }
+
+                      String savingdata =
+                          "https://aursunaobackend.herokuapp.com/save?user=" +
+                              widget.userid +
+                              "&text=" +
+                              _text;
+                      print(savingdata);
+                      await http.get(Uri.parse(savingdata));
+
+                      setState(() {
+                        moodResult = mood;
+                        if (mood == "Happy") {
+                          moodResult = _happyText;
+                        } else if (mood == "Sad") {
+                          moodResult = _sadText;
+                        } else if (mood == "Fear") {
+                          moodResult = _fearTExt;
+                        } else if (mood == "Suprise") {
+                          moodResult = _supText;
+                        } else if (mood == "angry") {
+                          moodResult = _angryText;
+                        } else {
+                          moodResult = "Hope it's all good!";
+                        }
+                        showResults();
+                      });
+                    },
+                    padding: EdgeInsets.all(10.0),
+                    color: Colors.deepPurple,
+                    textColor: Colors.white,
+                    child: Text("Save to Log"),
+                  ),
+                ),
+              ),
+              viewResults
+                  ? SingleChildScrollView(
+                      physics: ScrollPhysics(),
+                      child: Container(
+                        color: Colors.purple[100],
+                        margin: EdgeInsets.fromLTRB(25, 0, 25, 25),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(9.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      moodResult,
+                                      style: TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                : Text(""),
-          ],
+                    )
+                  : Text(""),
+            ],
+          ),
         ),
       ),
     );
