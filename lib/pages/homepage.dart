@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
   bool _isListening = false;
   String _text = 'Press the button and speak your heart out!';
   double _confidence = 1.0;
-  bool viewResults = false;
+  bool viewResults = true;
 
   String _happyText =
       "Hey you, seems like you are in a happy mood today, hope it continues throughout the day. Do spread your positive vibes to others and be all ears to someone who needs a good talk ,take care!";
@@ -93,6 +93,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  String finalMood = "";
   String moodResult = "";
 
   @override
@@ -219,6 +220,7 @@ class _HomePageState extends State<HomePage> {
                         } else {
                           moodResult = "Hope it's all good!";
                         }
+                        finalMood = mood;
                         showResults();
                       });
                     },
@@ -240,13 +242,17 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(9.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
+                                      finalMood,
+                                      style: TextStyle(fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
                                       moodResult,
-                                      style: TextStyle(fontSize: 10),
+                                      style: TextStyle(fontSize: 15),
                                     ),
                                   ],
                                 ),
