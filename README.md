@@ -16,6 +16,11 @@ Amidst the pandemic where life, career and everything in between are at crossroa
 * Auth0 for user authentication
 * Canva for UI
 
+### Snapshots
+Results
+![output page]()
+<br>
+
 ### Setup for developers
 Follow the instructions below to run the application in developer mode:
 1. Clone the repository
