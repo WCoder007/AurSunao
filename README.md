@@ -17,8 +17,11 @@ Amidst the pandemic where life, career and everything in between are at crossroa
 * Canva for UI
 
 ### Snapshots
-Results
-![output page]()
+Emotion detector and results
+![output page](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap1.jpeg)
+<br>
+Logs
+![logs](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap2.jpeg)
 <br>
 
 ### Setup for developers
