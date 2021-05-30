@@ -64,11 +64,16 @@ class _HomePageState extends State<HomePage> {
   double _confidence = 1.0;
   bool viewResults = false;
 
-  String _happyText = "Hey you, seems like you are in a happy mood today, hope it continues throughout the day. Do spread your positive vibes to others and be all ears to someone who needs a good talk ,take care!";
-  String _sadText = "Hello, it looks like you are sad today. Don't worry, I got you! \nHere are a few things you can do make your day brighter,Eat something sweet! \nNeed a good laugh? Laugh out on some jokes xD \nWatch F.R.I.E.N.D.S on Netflix and feel good!";
-  String _angryText = "Hi, according to my analysis, you seem to be in an angry mood. Please calm down and think before you speak or do anything you will regret later. Here are a few things you can do to calm down. \nMeditate \nDo light workouts \nVisualize yourself calm";
-  String _supText = "Hola, looks like you are surprised, hope its a good surprise :))";
-  String _fearTExt = "Hey, you are not alone, I'll help you get over your fears.\nTry Meditation\nDo light exercsies\nListen to some songs";
+  String _happyText =
+      "Hey you, seems like you are in a happy mood today, hope it continues throughout the day. Do spread your positive vibes to others and be all ears to someone who needs a good talk ,take care!";
+  String _sadText =
+      "Hello, it looks like you are sad today. Don't worry, I got you! \nHere are a few things you can do make your day brighter,Eat something sweet! \nNeed a good laugh? Laugh out on some jokes xD \nWatch F.R.I.E.N.D.S on Netflix and feel good!";
+  String _angryText =
+      "Hi, according to my analysis, you seem to be in an angry mood. Please calm down and think before you speak or do anything you will regret later. Here are a few things you can do to calm down. \nMeditate \nDo light workouts \nVisualize yourself calm";
+  String _supText =
+      "Hola, looks like you are surprised, hope its a good surprise :))";
+  String _fearTExt =
+      "Hey, you are not alone, I'll help you get over your fears.\nTry Meditation\nDo light exercsies\nListen to some songs";
 
   @override
   void initState() {
@@ -199,22 +204,17 @@ class _HomePageState extends State<HomePage> {
 
                     setState(() {
                       moodResult = mood;
-                      if(mood == "Happy"){
+                      if (mood == "Happy") {
                         moodResult = _happyText;
-                      }
-                      else if(mood == "Sad"){
+                      } else if (mood == "Sad") {
                         moodResult = _sadText;
-                      }
-                      else if(mood == "Fear"){
+                      } else if (mood == "Fear") {
                         moodResult = _fearTExt;
-                      }
-                      else if(mood == "Suprise"){
+                      } else if (mood == "Suprise") {
                         moodResult = _supText;
-                      }
-                      else if(mood == "angry"){
+                      } else if (mood == "angry") {
                         moodResult = _angryText;
-                      }
-                      else{
+                      } else {
                         moodResult = "Hope it's all good!";
                       }
                       showResults();
@@ -228,26 +228,30 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             viewResults
-                ? Container(
-                    color: Colors.purple[100],
-                    margin: EdgeInsets.fromLTRB(25, 0, 25, 25),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(9.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  moodResult,
-                                  style: TextStyle(fontSize: 10),
-                                ),
-                              ],
+                ? SingleChildScrollView(
+                    physics: ScrollPhysics(),
+                    child: Container(
+                      color: Colors.purple[100],
+                      margin: EdgeInsets.fromLTRB(25, 0, 25, 25),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(9.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    moodResult,
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   )
                 : Text(""),
