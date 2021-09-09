@@ -17,17 +17,15 @@ Amidst the pandemic where life, career and everything in between are at crossroa
 * Canva for UI
 
 ### Snapshots
-Emotion Detector and Voice diary
+<p float="left" style="margin:auto">
+<img src="/snapshots/login.jpeg"  alt="Login Screen" width="30%">
+&nbsp;&nbsp;&nbsp;
+<img src="/snapshots/mainscreen.jpg"  alt="Home Screen" width="30%">
 <br>
-<br>
-![output page](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap1.jpeg)
-<br>
-<br>
-Logs
-<br>
-<br>
-![logs](https://github.com/WCoder007/AurSunao/blob/main/Snaps/Snap2.jpeg "Logs")
-<br>
+<img src="/snapshots/sidebar.jpg"  alt="Sidebar" width="30%">
+&nbsp;&nbsp;&nbsp;
+<img src="/snapshots/logs.jpg"  alt="Logs" width="30%">
+</p>
 
 ### Setup for developers
 Follow the instructions below to run the application in developer mode:
